@@ -65,4 +65,9 @@ public class Prodotto {
     public BigDecimal getTotalPrezzo() {
         return this.prezzo.add(this.prezzo.multiply(this.iva)).setScale(2, RoundingMode.DOWN);
     }
+
+    public String toString() {
+        return String.format("Il prodotto %s ha un prezzo totale di euro %s", this.nome,
+                this.getTotalPrezzo().toString());
+    }
 }
