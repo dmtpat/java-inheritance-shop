@@ -13,7 +13,7 @@ public class Prodotto {
     private BigDecimal iva;
 
     //* costruttore
-    public Prodotto(String nome, String marca, BigDecimal prezzo, BigDecimal iva) {
+    protected Prodotto(String nome, String marca, BigDecimal prezzo, BigDecimal iva) {
         Random _codice = new Random();
         this.Codice = _codice.nextInt(9999);
         this.nome = nome;
