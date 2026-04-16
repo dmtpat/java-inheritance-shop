@@ -63,6 +63,6 @@ public class Prodotto {
     }
 
     public BigDecimal getTotalPrezzo() {
-        return this.prezzo.multiply(this.iva);
+        return this.prezzo.add(this.prezzo.multiply(this.iva)).setScale(2, RoundingMode.DOWN);
     }
 }

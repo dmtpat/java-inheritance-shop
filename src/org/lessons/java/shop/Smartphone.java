@@ -8,7 +8,7 @@ public class Smartphone extends Prodotto {
 
     public Smartphone(String nome, String marca, BigDecimal prezzo, BigDecimal iva, String IMEI, float memoria) {
         super(nome, marca, prezzo, iva);
-        this.IMEI = IMEI;
+        this.IMEI = IMEI.toUpperCase();
         this.memoria = memoria;
     }
 
@@ -17,7 +17,7 @@ public class Smartphone extends Prodotto {
     }
 
     private void setIMEI(String IMEI) {
-        this.IMEI = IMEI;
+        this.IMEI = IMEI.toUpperCase();
     }
 
     public float getMemoiria() {
