@@ -1,6 +1,7 @@
 package org.lessons.java.shop;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class Smartphone extends Prodotto {
     private String IMEI;
@@ -33,4 +34,16 @@ public class Smartphone extends Prodotto {
     public String toString() {
         return super.toString() + String.format(" Lo smartphone ha una memoria di %o gb. %n", this.memoria);
     }
+
+    @Override
+    public BigDecimal getTotalPrezzo() {
+        if (this.memoria< 32 && Carrello.hasFidelity) {
+            BigDecimal _prezzo = super.getPrezzo().add(super.getPrezzo().multiply(super.getIva())).setScale(2, RoundingMode.DOWN);
+            _prezzo = _prezzo.subtract(_prezzo.multiply(new BigDecimal(0.05)));
+            return _prezzo;
+        } else {
+            return super.getTotalPrezzo();
+        }
+    }
+
 }

@@ -1,6 +1,7 @@
 package org.lessons.java.shop;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class Televisori extends Prodotto {
 
@@ -39,4 +40,15 @@ public class Televisori extends Prodotto {
         return super.toString() + String.format(" Il televisore ha una dimensione di %s pollici. La tv è smart: %b. %n",
                 this.dimensioni, this.isSmart);
     }
+    @Override
+    public BigDecimal getTotalPrezzo() {
+        if (!this.isSmart && Carrello.hasFidelity) {
+            BigDecimal _prezzo = super.getPrezzo().add(super.getPrezzo().multiply(super.getIva())).setScale(2, RoundingMode.DOWN);
+            _prezzo = _prezzo.subtract(_prezzo.multiply(new BigDecimal(0.1)));
+            return _prezzo;
+        } else {
+            return super.getTotalPrezzo();
+        }
+    }
+
 }

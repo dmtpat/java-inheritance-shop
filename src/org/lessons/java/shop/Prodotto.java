@@ -63,8 +63,13 @@ public class Prodotto {
     }
 
     public BigDecimal getTotalPrezzo() {
-        return this.prezzo.add(this.prezzo.multiply(this.iva)).setScale(2, RoundingMode.DOWN);
+        BigDecimal _prezzo = this.prezzo.add(this.prezzo.multiply(this.iva)).setScale(2, RoundingMode.DOWN);
+        if (Carrello.hasFidelity) {
+            _prezzo = _prezzo.subtract(_prezzo.multiply(new BigDecimal(0.02)));
+        }
+        return _prezzo;
     }
+    
 
     public String toString() {
         return String.format("Il prodotto %s ha un prezzo totale di euro %s", this.nome,
