@@ -4,12 +4,15 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Scanner;
 
+
 public class Carrello {
 
     private Prodotto[] lista;
+    static boolean hasFidelity;
 
     public Carrello() {
         this.lista = new Prodotto[0];
+        this.hasFidelity = false;
     }
 
     public void addList(Prodotto prodotto) {
@@ -29,13 +32,51 @@ public class Carrello {
         return _output;
     }
 
+    private void setHasFidelity(boolean hasFidelity) {
+        this.hasFidelity = hasFidelity;
+    }
+
+    public boolean checkFidelity(String fidelityNumber, String[] fidelityCards) {
+        boolean isPresent = false;
+        int i = 0;
+        while (i < fidelityCards.length || !isPresent) {
+            if (fidelityCards[i].equals(fidelityNumber)) {
+                isPresent = true;
+            } else {
+                i++;
+            }
+        }
+        this.setHasFidelity(isPresent);
+        return isPresent;
+    }
+    
+    public BigDecimal getTotal() {
+        BigDecimal _total = new BigDecimal(0).setScale(2, RoundingMode.DOWN);
+        for (int i = 0; i < lista.length; i++) {
+            _total = _total.add(lista[i].getTotalPrezzo());
+        }
+        return _total;
+    }
+
     public static void main(String[] args) {
+        String[] fidelityCards = { "1234", "4567", "7890" };
+
         Carrello cart1 = new Carrello();
         String tipoProdotto;
         String nomeProdotto;
 
         Scanner input = new Scanner(System.in);
         System.out.println("Riempiamo il Carrello!");
+        System.out.print("Sei in possesso di una carta fedeltà? s/n ");
+        if (input.nextLine().toLowerCase().equals("s")) {
+            
+            System.out.print("Inserisci il codice della tua carta: ");
+            // String fidelityNumber = input.nextLine().toUpperCase();
+            if (!cart1.checkFidelity(input.nextLine().toUpperCase(), fidelityCards)) {
+                System.out.println("La carta fedeltà inserita non è valida.");
+            }
+
+        }
         boolean wantInsert = true;
         do {
     
@@ -106,5 +147,6 @@ public class Carrello {
         input.close();
         System.out.println("Ecco il contenuto del tuo carrello:");
         System.out.print(cart1);
+        System.out.print("Il totale del carrello è di euro " + cart1.getTotal());
     }
 }
