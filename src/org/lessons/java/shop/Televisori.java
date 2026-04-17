@@ -36,7 +36,7 @@ public class Televisori extends Prodotto {
 
     @Override
     public String toString() {
-        return super.toString() + String.format(" Il televisore ha una dimensione di %s pollici. La tv è smart: %b",
+        return super.toString() + String.format(" Il televisore ha una dimensione di %s pollici. La tv è smart: %b. %n",
                 this.dimensioni, this.isSmart);
     }
 }

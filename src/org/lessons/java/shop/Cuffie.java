@@ -34,7 +34,7 @@ public class Cuffie extends Prodotto {
     @Override
     public String toString() {
         return super.toString()
-                + String.format(" Le cuffie sono di colore %s. Sono wireless: %b.", this.colore, this.iswireless);
+                + String.format(" Le cuffie sono di colore %s. Sono wireless: %b. %n", this.colore, this.iswireless);
     }
 
 }

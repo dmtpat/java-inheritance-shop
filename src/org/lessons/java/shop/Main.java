@@ -13,6 +13,11 @@ public class Main {
                  System.out.println(rosaBlue);
                  System.out.println(ugo);
                  System.out.println(pina);
+                 Carrello cart1 = new Carrello();
+                 cart1.addList(pina);
+                 cart1.addList(ugo);
+                 cart1.addList(rosaBlue);
+                 System.out.println(cart1);
                 // System.out.println(rosaBlue.getNome());
                 // System.out.println(rosaBlue.getTotalPrezzo());
                 // System.out.println(rosaBlue.getColore());

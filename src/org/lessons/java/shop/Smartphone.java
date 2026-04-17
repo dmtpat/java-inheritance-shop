@@ -31,6 +31,6 @@ public class Smartphone extends Prodotto {
     }
     @Override
     public String toString() {
-        return super.toString() + String.format(" Lo smartphone ha una memoria di %o gb", this.memoria);
+        return super.toString() + String.format(" Lo smartphone ha una memoria di %o gb. %n", this.memoria);
     }
 }
